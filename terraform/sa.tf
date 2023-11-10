@@ -1,9 +1,9 @@
 locals {
   service-accounts = toset([
-    "catgpt-sa",
+    "instance-sa",
     "ig-sa"
   ])
-  catgpt-sa-roles = toset([
+  instance-sa-roles = toset([
     "container-registry.images.puller",
     "monitoring.editor",
   ])
@@ -18,9 +18,9 @@ resource "yandex_iam_service_account" "service-accounts" {
 }
 
 resource "yandex_resourcemanager_folder_iam_member" "catgpt-roles" {
-  for_each  = local.catgpt-sa-roles
+  for_each  = local.instance-sa-roles
   folder_id = var.yc_folder_id
-  member    = "serviceAccount:${yandex_iam_service_account.service-accounts["catgpt-sa"].id}"
+  member    = "serviceAccount:${yandex_iam_service_account.service-accounts["instance-sa"].id}"
   role      = each.key
 }
 

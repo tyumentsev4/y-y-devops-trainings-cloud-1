@@ -11,7 +11,7 @@ resource "yandex_compute_instance_group" "catgpt-ig" {
   }
   instance_template {
     platform_id        = "standard-v2"
-    service_account_id = yandex_iam_service_account.service-accounts["catgpt-sa"].id
+    service_account_id = yandex_iam_service_account.service-accounts["instance-sa"].id
     resources {
       cores         = 2
       memory        = 1
