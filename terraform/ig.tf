@@ -33,8 +33,9 @@ resource "yandex_compute_instance_group" "catgpt-ig" {
       }
     }
     metadata = {
-      docker-compose = file("${path.module}/docker-compose.yaml")
+      docker-compose = templatefile("${path.module}/docker-compose.yaml.tftpl", { folder_id = var.yc_folder_id })
       ssh-keys       = "ubuntu:${file("~/.ssh/id_ed25519.pub")}"
+      user-data      = file("${path.module}/cloud-config.yaml")
     }
   }
 

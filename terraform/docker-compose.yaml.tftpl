@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+  catgpt:
+    container_name: catgpt
+    image: cr.yandex/crps5b4lc60cs0qk7tof/catgpt:main
+    restart: always
+    network_mode: "host"
+  ua:
+    container_name: ua
+    image: cr.yandex/yc/unified-agent:latest
+    restart: always
+    volumes:
+      - /proc:/ua_proc
+      - /ua_config.d:/etc/yandex/unified_agent/conf.d
+    environment:
+      - PROC_DIRECTORY=/ua_proc
+      - FOLDER_ID=${folder_id}
+    network_mode: "host"

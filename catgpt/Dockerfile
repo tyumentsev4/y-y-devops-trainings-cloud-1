@@ -12,7 +12,7 @@ RUN CGO_ENABLED=0 go build -o /go/bin/catgpt
 
 FROM gcr.io/distroless/static-debian12:latest-amd64
 
-EXPOSE 8080
+EXPOSE 8080 9090
 
 USER nobody:nobody
 
