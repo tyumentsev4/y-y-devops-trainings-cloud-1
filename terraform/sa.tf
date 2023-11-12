@@ -8,7 +8,10 @@ locals {
     "monitoring.editor",
   ])
   ig-sa-roles = toset([
-    "editor"
+    "compute.editor",
+    "iam.serviceAccounts.user",
+    "load-balancer.admin",
+    # "vpc.admin",
   ])
 }
 
